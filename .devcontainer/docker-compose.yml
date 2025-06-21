@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ../..:/workspace:cached
+      - ~/.gitconfig:/home/frappe/.gitconfig
+    command: sleep infinity
+    environment:
+      - MARIADB_ROOT_PASSWORD=admin
+      - MARIADB_HOST=db
+      - REDIS_CACHE=redis://redis:6379
+      - REDIS_QUEUE=redis://redis:6379
+      - REDIS_SOCKETIO=redis://redis:6379
+    depends_on:
+      - db
+      - redis
+
+  db:
+    image: mariadb:10.6
+    restart: unless-stopped
+    environment:
+      - MARIADB_ROOT_PASSWORD=admin
+      - MARIADB_DATABASE=test_frappe
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  redis:
+    image: redis:6-alpine
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+
+volumes:
+  db_data: 

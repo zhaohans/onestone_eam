@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  bench:
+    image: frappe/bench:latest
+    platform: linux/amd64
+    container_name: onestone_bench
+    volumes:
+      - .:/workspace:cached
+    ports:
+      - "8001:8000"
+      - "9001:9000"
+    environment:
+      - MARIADB_ROOT_PASSWORD=admin
+      - MARIADB_HOST=db
+      - REDIS_CACHE=redis://redis:6379
+      - REDIS_QUEUE=redis://redis:6379
+      - REDIS_SOCKETIO=redis://redis:6379
+    depends_on:
+      - db
+      - redis
+    command: sleep infinity
+    networks:
+      - onestone_network
+
+  db:
+    image: mariadb:10.6
+    platform: linux/amd64
+    container_name: onestone_db
+    restart: unless-stopped
+    environment:
+      - MARIADB_ROOT_PASSWORD=admin
+      - MARIADB_DATABASE=test_frappe
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3307:3306"
+    networks:
+      - onestone_network
+
+  redis:
+    image: redis:6-alpine
+    platform: linux/amd64
+    container_name: onestone_redis
+    restart: unless-stopped
+    ports:
+      - "6380:6379"
+    networks:
+      - onestone_network
+
+volumes:
+  db_data:
+
+networks:
+  onestone_network:
+    driver: bridge 

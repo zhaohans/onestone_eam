@@ -1,0 +1,57 @@
+{
+	"name": "Frappe Bench",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/workspace",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-python.python",
+				"ms-python.black-formatter",
+				"ms-python.flake8",
+				"ms-python.isort",
+				"ms-vscode.vscode-json",
+				"bradlc.vscode-tailwindcss",
+				"esbenp.prettier-vscode",
+				"ms-vscode.vscode-typescript-next"
+			],
+			"settings": {
+				"python.defaultInterpreterPath": "/home/frappe/frappe-bench/env/bin/python",
+				"python.linting.enabled": true,
+				"python.linting.flake8Enabled": true,
+				"python.formatting.provider": "black",
+				"python.sortImports.args": ["--profile", "black"],
+				"editor.formatOnSave": true,
+				"editor.codeActionsOnSave": {
+					"source.organizeImports": true
+				}
+			}
+		}
+	},
+	"forwardPorts": [8000, 9000, 3306, 6379],
+	"portsAttributes": {
+		"8000": {
+			"label": "Frappe Bench",
+			"onAutoForward": "notify"
+		},
+		"9000": {
+			"label": "Socket.IO",
+			"onAutoForward": "notify"
+		},
+		"3306": {
+			"label": "MariaDB",
+			"onAutoForward": "silent"
+		},
+		"6379": {
+			"label": "Redis",
+			"onAutoForward": "silent"
+		}
+	},
+	"postCreateCommand": "bash /workspace/.devcontainer/setup.sh",
+	"postStartCommand": "bench start",
+	"remoteUser": "frappe",
+	"features": {
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {},
+		"ghcr.io/devcontainers/features/git:1": {}
+	}
+} 
