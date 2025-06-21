@@ -1,0 +1,10 @@
+[
+  {
+    "doctype": "Server Script",
+    "script_type": "Scheduler Event",
+    "event_frequency": "Daily",
+    "script": "# Placeholder: Mark Compliance Tasks and Client Reviews as Overdue if due_date < today and status != Complete\n# Implement logic to update status to Overdue\npass",
+    "module": "onestone_eam",
+    "name": "Compliance Overdue Daily Marking"
+  }
+] 

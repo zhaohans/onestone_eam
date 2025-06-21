@@ -1,0 +1,110 @@
+[
+  {
+    "doctype": "Report",
+    "name": "Portfolio Statement",
+    "report_name": "Portfolio Statement",
+    "ref_doctype": "Portfolio Holding",
+    "report_type": "Query Report",
+    "module": "onestone_eam",
+    "is_standard": "No",
+    "query": "SELECT ph.portfolio, ph.security_name, ph.isin, ph.security_type, ph.quantity, ph.market_price, ph.currency, ph.market_value, ph.valuation_date, ap.portfolio_name, c.customer_name FROM `tabPortfolio Holding` ph LEFT JOIN `tabAUM Portfolio` ap ON ph.portfolio = ap.name LEFT JOIN `tabCustomer` c ON ap.client = c.name WHERE ph.portfolio = %(portfolio)s ORDER BY ph.security_type, ph.market_value DESC",
+    "filters": [
+      {
+        "fieldname": "portfolio",
+        "label": "Portfolio",
+        "fieldtype": "Link",
+        "options": "AUM Portfolio",
+        "reqd": 1
+      },
+      {
+        "fieldname": "valuation_date",
+        "label": "Valuation Date",
+        "fieldtype": "Date",
+        "reqd": 0
+      }
+    ]
+  },
+  {
+    "doctype": "Report",
+    "name": "Transaction History",
+    "report_name": "Transaction History",
+    "ref_doctype": "Trade",
+    "report_type": "Query Report",
+    "module": "onestone_eam",
+    "is_standard": "No",
+    "query": "SELECT t.trade_date, t.settlement_date, t.trade_type, t.security_name, t.isin, t.quantity, t.price_per_unit, t.total_amount, t.currency, t.status, t.portfolio FROM `tabTrade` t WHERE t.portfolio = %(portfolio)s AND t.trade_date BETWEEN %(from_date)s AND %(to_date)s ORDER BY t.trade_date DESC",
+    "filters": [
+      {
+        "fieldname": "portfolio",
+        "label": "Portfolio",
+        "fieldtype": "Link",
+        "options": "AUM Portfolio",
+        "reqd": 1
+      },
+      {
+        "fieldname": "from_date",
+        "label": "From Date",
+        "fieldtype": "Date",
+        "reqd": 1
+      },
+      {
+        "fieldname": "to_date",
+        "label": "To Date",
+        "fieldtype": "Date",
+        "reqd": 1
+      },
+      {
+        "fieldname": "trade_type",
+        "label": "Trade Type",
+        "fieldtype": "Select",
+        "options": "Buy\\nSell\\nDeposit\\nWithdrawal\\nDividend\\nInterest\\nFee\\nOther",
+        "reqd": 0
+      }
+    ]
+  },
+  {
+    "doctype": "Report",
+    "name": "Fee & Retrocession Summary",
+    "report_name": "Fee & Retrocession Summary",
+    "ref_doctype": "Fee Report",
+    "report_type": "Query Report",
+    "module": "onestone_eam",
+    "is_standard": "No",
+    "query": "SELECT fr.period_start, fr.period_end, fr.portfolio, fr.custodian, fr.fee_type, fr.fee_base, fr.fee_rate, fr.fee_amount, fr.retro_amount, fr.currency, fr.status, ap.portfolio_name, c.customer_name FROM `tabFee Report` fr LEFT JOIN `tabAUM Portfolio` ap ON fr.portfolio = ap.name LEFT JOIN `tabCustomer` c ON ap.client = c.name WHERE fr.period_end BETWEEN %(from_date)s AND %(to_date)s ORDER BY fr.period_end DESC",
+    "filters": [
+      {
+        "fieldname": "from_date",
+        "label": "From Date",
+        "fieldtype": "Date",
+        "reqd": 1
+      },
+      {
+        "fieldname": "to_date",
+        "label": "To Date",
+        "fieldtype": "Date",
+        "reqd": 1
+      },
+      {
+        "fieldname": "custodian",
+        "label": "Custodian",
+        "fieldtype": "Link",
+        "options": "Supplier",
+        "reqd": 0
+      },
+      {
+        "fieldname": "portfolio",
+        "label": "Portfolio",
+        "fieldtype": "Link",
+        "options": "AUM Portfolio",
+        "reqd": 0
+      },
+      {
+        "fieldname": "status",
+        "label": "Status",
+        "fieldtype": "Select",
+        "options": "Draft\\nPending Approval\\nApproved\\nPaid\\nCancelled",
+        "reqd": 0
+      }
+    ]
+  }
+] 

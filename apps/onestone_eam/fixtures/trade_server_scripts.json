@@ -1,0 +1,20 @@
+[
+  {
+    "doctype": "Server Script",
+    "script_type": "DocType Event",
+    "reference_doctype": "Trade",
+    "event": "on_submit",
+    "script": "# Placeholder: Update holdings and AUM on trade submit\n# Implement logic to adjust Portfolio Holding and recalculate AUM\npass",
+    "module": "onestone_eam",
+    "name": "Trade Submit Update Holdings"
+  },
+  {
+    "doctype": "Server Script",
+    "script_type": "DocType Event",
+    "reference_doctype": "Trade",
+    "event": "on_cancel",
+    "script": "# Placeholder: Reverse holdings and AUM on trade cancel\n# Implement logic to reverse Portfolio Holding and recalculate AUM\npass",
+    "module": "onestone_eam",
+    "name": "Trade Cancel Reverse Holdings"
+  }
+] 

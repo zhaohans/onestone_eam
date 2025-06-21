@@ -1,0 +1,18 @@
+# One Stone Capital EAM (External Asset Manager) System
+# Requirements for ERPNext v15+ / Frappe v15+ / Python 3.10+
+
+# Core Framework Dependencies
+frappe>=15.0.0
+erpnext>=15.0.0
+
+# Python Version Requirement
+# Python 3.10+ (as per Frappe v15 requirements)
+
+# Development Dependencies (optional)
+pytest>=6.0.0
+pytest-cov>=2.0.0
+black>=21.0.0
+flake8>=3.8.0
+
+# No additional external dependencies required
+# All functionality uses only Frappe/ERPNext core APIs 

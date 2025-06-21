@@ -1,0 +1,79 @@
+{
+ "app_name": "onestone_eam",
+ "app_title": "One Stone Capital EAM",
+ "app_description": "Wealth/EAM (External Asset Manager) system for One Stone Capital",
+ "app_publisher": "One Stone Capital",
+ "app_email": "admin@onestonecapital.com",
+ "app_url": "https://onestonecapital.com",
+ "app_logo_url": "/assets/onestone_eam/images/logo.png",
+ "app_icon": "octicon octicon-graph",
+ "app_color": "#2E8B57",
+ "app_version": "1.0.0",
+ "app_license": "MIT",
+ "fixtures": [
+  {
+   "doctype": "Custom Field",
+   "filters": [["module", "in", ["onestone_eam"]]]
+  },
+  {
+   "doctype": "Property Setter",
+   "filters": [["module", "in", ["onestone_eam"]]]
+  },
+  {
+   "doctype": "Workflow",
+   "filters": [["module", "in", ["onestone_eam"]]]
+  },
+  {
+   "doctype": "Workflow State",
+   "filters": [["module", "in", ["onestone_eam"]]]
+  },
+  {
+   "doctype": "Workflow Action",
+   "filters": [["module", "in", ["onestone_eam"]]]
+  },
+  {
+   "doctype": "Role",
+   "filters": [["module", "in", ["onestone_eam"]]]
+  },
+  {
+   "doctype": "Custom DocType",
+   "filters": [["module", "in", ["onestone_eam"]]]
+  },
+  {
+   "doctype": "Server Script",
+   "filters": [["module", "in", ["onestone_eam"]]]
+  },
+  {
+   "doctype": "Client Script",
+   "filters": [["module", "in", ["onestone_eam"]]]
+  },
+  {
+   "doctype": "Notification",
+   "filters": [["module", "in", ["onestone_eam"]]]
+  },
+  {
+   "doctype": "Print Format",
+   "filters": [["module", "in", ["onestone_eam"]]]
+  },
+  {
+   "doctype": "Report",
+   "filters": [["module", "in", ["onestone_eam"]]]
+  },
+  {
+   "doctype": "Dashboard",
+   "filters": [["module", "in", ["onestone_eam"]]]
+  },
+  {
+   "doctype": "Dashboard Chart",
+   "filters": [["module", "in", ["onestone_eam"]]]
+  },
+  {
+   "doctype": "Number Card",
+   "filters": [["module", "in", ["onestone_eam"]]]
+  },
+  {
+   "doctype": "Workspace",
+   "filters": [["module", "in", ["onestone_eam"]]]
+  }
+ ]
+} 

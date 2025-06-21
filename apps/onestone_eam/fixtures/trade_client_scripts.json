@@ -1,0 +1,10 @@
+[
+  {
+    "doctype": "Client Script",
+    "dt": "Trade",
+    "script_type": "Form",
+    "script": "// Placeholder: Auto-calculate Total Amount and dynamic field requirements based on Trade Type\nfrappe.ui.form.on('Trade', {\n  refresh(frm) {\n    // Add dynamic UI logic here\n  },\n  quantity(frm) {\n    // Auto-calc Total Amount if Price is set\n  },\n  price(frm) {\n    // Auto-calc Total Amount if Quantity is set\n  }\n});",
+    "module": "onestone_eam",
+    "name": "Trade Form Client Script"
+  }
+] 

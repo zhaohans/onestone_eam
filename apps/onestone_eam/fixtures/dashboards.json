@@ -1,0 +1,152 @@
+[
+  {
+    "doctype": "Number Card",
+    "name": "Total AUM",
+    "card_name": "Total AUM",
+    "function": "Sum",
+    "aggregate_function_based_on": "aum_amount",
+    "document_type": "AUM Portfolio",
+    "filters_json": "[]",
+    "module": "onestone_eam"
+  },
+  {
+    "doctype": "Number Card",
+    "name": "Active Clients",
+    "card_name": "Active Clients",
+    "function": "Count",
+    "document_type": "Customer",
+    "filters_json": "[{\"fieldname\":\"osc_onboarding_status\",\"operator\":\"=\",\"value\":\"Onboarded\"}]",
+    "module": "onestone_eam"
+  },
+  {
+    "doctype": "Number Card",
+    "name": "Retrocession Fees YTD",
+    "card_name": "Retrocession Fees (YTD)",
+    "function": "Sum",
+    "aggregate_function_based_on": "retro_amount",
+    "document_type": "Fee Report",
+    "filters_json": "[{\"fieldname\":\"period_end\",\"operator\":\"Between\",\"value\":[\"{{ frappe.get_year_start(frappe.getdate()) }}\",\"{{ frappe.get_year_end(frappe.getdate()) }}\"]}]",
+    "module": "onestone_eam"
+  },
+  {
+    "doctype": "Number Card",
+    "name": "Open Compliance Tasks",
+    "card_name": "Open Compliance Tasks",
+    "function": "Count",
+    "document_type": "Compliance Task",
+    "filters_json": "[{\"fieldname\":\"status\",\"operator\":\"=\",\"value\":\"Open\"}]",
+    "module": "onestone_eam"
+  },
+  {
+    "doctype": "Number Card",
+    "name": "Pending KYC Reviews",
+    "card_name": "Pending KYC Reviews",
+    "function": "Count",
+    "document_type": "Customer",
+    "filters_json": "[{\"fieldname\":\"osc_onboarding_status\",\"operator\":\"=\",\"value\":\"KYC Review\"}]",
+    "module": "onestone_eam"
+  },
+  {
+    "doctype": "Number Card",
+    "name": "Trades This Month",
+    "card_name": "Trades (This Month)",
+    "function": "Count",
+    "document_type": "Trade",
+    "filters_json": "[{\"fieldname\":\"trade_date\",\"operator\":\"Between\",\"value\":[\"{{ frappe.get_month_start(frappe.getdate()) }}\",\"{{ frappe.get_month_end(frappe.getdate()) }}\"]}]",
+    "module": "onestone_eam"
+  },
+  {
+    "doctype": "Number Card",
+    "name": "Overdue Reviews",
+    "card_name": "Overdue Reviews",
+    "function": "Count",
+    "document_type": "Client Review",
+    "filters_json": "[{\"fieldname\":\"status\",\"operator\":\"=\",\"value\":\"Overdue\"}]",
+    "module": "onestone_eam"
+  },
+  {
+    "doctype": "Dashboard Chart",
+    "name": "AUM Over Time",
+    "chart_name": "AUM Over Time",
+    "chart_type": "Line",
+    "document_type": "AUM Portfolio",
+    "group_by_type": "Group by",
+    "group_by_based_on": "modified",
+    "timespan": "Last Year",
+    "timeseries": 1,
+    "aggregate_function": "Sum",
+    "aggregate_function_based_on": "aum_amount",
+    "module": "onestone_eam"
+  },
+  {
+    "doctype": "Dashboard Chart",
+    "name": "Client Growth",
+    "chart_name": "Client Growth",
+    "chart_type": "Bar",
+    "document_type": "Customer",
+    "group_by_type": "Group by",
+    "group_by_based_on": "creation",
+    "timespan": "Last Year",
+    "timeseries": 1,
+    "aggregate_function": "Count",
+    "module": "onestone_eam"
+  },
+  {
+    "doctype": "Dashboard Chart",
+    "name": "Retrocession by Custodian",
+    "chart_name": "Retrocession by Custodian",
+    "chart_type": "Bar",
+    "document_type": "Fee Report",
+    "group_by_type": "Group by",
+    "group_by_based_on": "custodian",
+    "aggregate_function": "Sum",
+    "aggregate_function_based_on": "retro_amount",
+    "filters_json": "[{\"fieldname\":\"period_end\",\"operator\":\"Between\",\"value\":[\"{{ frappe.get_year_start(frappe.getdate()) }}\",\"{{ frappe.get_year_end(frappe.getdate()) }}\"]}]",
+    "module": "onestone_eam"
+  },
+  {
+    "doctype": "Dashboard Chart",
+    "name": "Compliance Tasks Status",
+    "chart_name": "Compliance Tasks Status",
+    "chart_type": "Pie",
+    "document_type": "Compliance Task",
+    "group_by_type": "Group by",
+    "group_by_based_on": "status",
+    "aggregate_function": "Count",
+    "module": "onestone_eam"
+  },
+  {
+    "doctype": "Dashboard Chart",
+    "name": "Portfolio Holdings by Type",
+    "chart_name": "Portfolio Holdings by Type",
+    "chart_type": "Pie",
+    "document_type": "Portfolio Holding",
+    "group_by_type": "Group by",
+    "group_by_based_on": "security_type",
+    "aggregate_function": "Sum",
+    "aggregate_function_based_on": "market_value",
+    "module": "onestone_eam"
+  },
+  {
+    "doctype": "Dashboard",
+    "name": "Wealth Management Dashboard",
+    "dashboard_name": "Wealth Management Dashboard",
+    "module": "onestone_eam",
+    "cards": [
+      "Total AUM",
+      "Active Clients",
+      "Retrocession Fees YTD",
+      "Open Compliance Tasks",
+      "Pending KYC Reviews",
+      "Trades This Month",
+      "Overdue Reviews"
+    ],
+    "charts": [
+      "AUM Over Time",
+      "Client Growth",
+      "Retrocession by Custodian",
+      "Compliance Tasks Status",
+      "Portfolio Holdings by Type"
+    ]
+  }
+] 

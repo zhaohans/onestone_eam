@@ -1,0 +1,45 @@
+[
+  {
+    "doctype": "Notification",
+    "name": "KYC Approved Notification",
+    "subject": "KYC Approved: {{ doc.name }}",
+    "document_type": "Customer",
+    "event": "Value Change",
+    "value_changed": "osc_onboarding_status",
+    "condition": "doc.osc_onboarding_status == 'KYC Approved'",
+    "channel": "Email",
+    "sender": "admin@onestonecapital.com",
+    "recipients": "{{ doc.osc_relationship_manager }}",
+    "message": "Dear {{ doc.osc_relationship_manager }},\\n\\nThe KYC for client {{ doc.name }} has been approved by the compliance team. You may now proceed with full account activation.\\n\\n[View Client]({{ frappe.get_url('Customer', doc.name) }})\\n\\nBest regards,\\nOne Stone Capital Compliance Team",
+    "module": "onestone_eam"
+  },
+  {
+    "doctype": "Notification",
+    "name": "Fee Report Due Reminder",
+    "subject": "Action Required: Fee Report due for {{ doc.portfolio }}",
+    "document_type": "Fee Report",
+    "event": "Date Change",
+    "date_changed": "period_end",
+    "days_in_advance": 7,
+    "condition": "doc.status in ['Draft', 'Pending Approval']",
+    "channel": "Email",
+    "sender": "admin@onestonecapital.com",
+    "recipients": "Operations",
+    "message": "The fee report for portfolio {{ doc.portfolio }} for the period ending {{ doc.period_end }} is due for processing. Please review and submit it for approval.\\n\\n[View Fee Report]({{ frappe.get_url('Fee Report', doc.name) }})\\n\\nBest regards,\\nOne Stone Capital EAM System",
+    "module": "onestone_eam"
+  },
+  {
+    "doctype": "Notification",
+    "name": "Trade Settlement Failed Alert",
+    "subject": "URGENT: Trade Settlement Failed for {{ doc.portfolio }}",
+    "document_type": "Trade",
+    "event": "Value Change",
+    "value_changed": "status",
+    "condition": "doc.status == 'Settlement Failed'",
+    "channel": "Email",
+    "sender": "admin@onestonecapital.com",
+    "recipients": "Operations,{{ frappe.get_doc('AUM Portfolio', doc.portfolio).relationship_manager if frappe.get_doc('AUM Portfolio', doc.portfolio).relationship_manager else 'Administrator' }}",
+    "message": "A trade has failed to settle and requires immediate attention.\\n\\nPortfolio: {{ doc.portfolio }}\\nTrade Type: {{ doc.trade_type }}\\nSecurity: {{ doc.security_name or 'N/A' }}\\nISIN: {{ doc.isin or 'N/A' }}\\nAmount: {{ doc.total_amount }} {{ doc.currency }}\\nTrade Date: {{ doc.trade_date }}\\n\\nPlease investigate the reason for the failure.\\n\\n[View Trade]({{ frappe.get_url('Trade', doc.name) }})\\n\\nBest regards,\\nOne Stone Capital EAM System",
+    "module": "onestone_eam"
+  }
+] 

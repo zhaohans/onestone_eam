@@ -1,0 +1,11 @@
+[
+  {
+    "doctype": "Server Script",
+    "script_type": "DocType Event",
+    "reference_doctype": "Fee Report",
+    "event": "before_save",
+    "script": "# Placeholder: Auto-calculate fee and retrocession amounts\n# Implement logic to fetch AUM and calculate fee_amount, retro_amount\npass",
+    "module": "onestone_eam",
+    "name": "Fee Report Auto-Calculation"
+  }
+] 
